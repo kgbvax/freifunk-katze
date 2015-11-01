@@ -1,4 +1,4 @@
-# freifunk-katze
+# Warpkatze
 Der Code für die Warpzone Winkekatze
 
 Die Warpzone Winkekatze hat ihre Pfote an einen Servo angebracht welcher an einem NodeMCU hängt.
