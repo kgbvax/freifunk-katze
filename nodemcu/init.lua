@@ -1,11 +1,12 @@
+print("initial heap: "..node.heap())
+node.setcpufreq(node.CPU160MHZ)
 wifi.setmode(wifi.STATION)
-wifi.sta.config("SSID","password")
+wifi.sta.config("Freifunk","")
 -- wifi.sta.autoconnect(0)
 wifi.sta.connect()
 
 print("Wifi initalized ",wifi.sta.getmac(), wifi.sta.getip())
 
- 
 function errorHandler() 
  print("error : " .. error)
 end

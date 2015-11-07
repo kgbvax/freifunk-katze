@@ -8,45 +8,43 @@ actions.katzup=     function()  pwm.setduty(servo1_pin,servo_idle) end
 actions.katzdown=   function()  pwm.setduty(servo1_pin,servo_min) end
 actions.katzshake=  function () 
     for i=1,4 do
-        pwm.setduty(servo1_pin,servo_max)
+        paw(100)
         tmr.delay(70000)
-        pwm.setduty(servo1_pin,servo_min)
+        paw(0)
         tmr.delay(70000)
     end
-    pwm.setduty(servo1_pin,servo_idle)
+    paw_idle()
 end
 
 actions.katzmosh=   function () 
     for i=1,6 do
-        pwm.setduty(servo1_pin,servo_max)
+        paw(100)
         tmr.delay(290000)
-        pwm.setduty(servo1_pin,servo_min)
+        paw(0)
         tmr.delay(290000)
     end
-    pwm.setduty(servo1_pin,servo_idle)
+    paw_idle()
 end
 
-actions.katzreboot = function() say("Deine Mudder!") end
 actions.katzwave=   function() 
-   for v = 50,110,1 do
-      pwm.setduty(servo1_pin,v)
-      tmr.delay(17000)
+   local v
+   for v = 0,100,2 do
+      paw(v)
+      tmr.delay(19000)
     end
-    for v= 110,50,-1 do
-      pwm.setduty(servo1_pin,v)
-      tmr.delay(17000)
+    for v= 100,0,-2 do
+      paw(v)
+      tmr.delay(19000)
     end
-
+    --i=0/0
 end
 
-actions.katzfn = function (data) 
-    name=data:match("\w(.*)||")
-    print("fn name" .. name)
-    luafn=data:match("||(.*)")
-    print("fn " .. luafn)
-    actions[name]=luafn
-end
+--actions.katzfn = function (data) 
+--    name=data:match("\w(.*)||")
+--    print("fn name" .. name)
+--    luafn=data:match("||(.*)")
+--    print("fn " .. luafn)
+--    actions[name]=luafn
+--end
 
-f=actions["katzfn"]
  
-f("fooname||barlua")
