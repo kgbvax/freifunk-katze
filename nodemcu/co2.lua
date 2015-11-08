@@ -4,11 +4,11 @@ ZERO_POINT_VOLTAGE=293
 
 --CO2CURVE = {2.602, }
 function sendCO2Value(value)
-    if m then 
+    if NET then 
       m:publish(MYTOPIC.."/co2adc",value, 0, 0)
     end
-    v2=100-(value-200)  
-    --paw(v2)
+    v2= value-200 
+    paw(v2)
 end
 
 function pollCO2()
@@ -19,4 +19,4 @@ function pollCO2()
   sendCO2Value(val)
 end
 
-tmr.alarm(2,2500,1,pollCO2)
+tmr.alarm(2,5000,1,pollCO2)
