@@ -1,18 +1,14 @@
-identity="atomic-winkekatze-"..node.chipid()
-
+identity="winkekatze-"..node.chipid()
 print("id:"..identity)
 
--- BROKER="broker.mqttdashboard.com"
 -- BROKER="m2m.eclipse.org"
 BROKER="mqtt.kgbvax.net"
 -- BROKER="broker.hivemq.com"
 BRPORT=1883 -- TCP wihtout TLS
 BRUSER=""
-BRPWD=""
+BRPWD="" 
 
-
--- PWM frequency 50Hz
-PWM_freq = 50
+PWM_freq = 50 --Hz
 -- IOMap https://github.com/nodemcu/nodemcu-firmware/wiki/nodemcu_api_en#new_gpio_map
 servo1_pin=4 -- GPIO2
 led_pin=1 -- GPIO5
@@ -47,6 +43,10 @@ function paw_idle()
   paw(paw_idle_value)
 end
 
+function paw_busy()
+end
+
+
 -- IRC Bridge
 --Client mosqsub/55267-kgbvx.fri received PUBLISH (d0, q0, r1, m0, '/warpzone/winkekatze2/%ffms/topic', ... (118 bytes))
 
@@ -75,9 +75,9 @@ function helpStr(act)
     for key,value in pairs(act) do 
       help= help .. "'" .. key .."'" .. " " 
     end
-
+    return help
   end
-  return help .. " nothing (because something is broken)"
+  return "No actions available."
 end
 
 
@@ -133,10 +133,10 @@ m:connect(BROKER, BRPORT, 0,
         intro()
       end)
     m:subscribe(mytopic_eval,0)
-  end)
+  end) 
 
 function intro() 
-  say("Ich bin Katze.")
+  --say("Ich bin Katze.")
   say("MQTT: ".. BROKER .. " topic:" .. mytopic_msg)
   say(helpStr(actions))
   tmr.alarm(0,2400000,0,intro)

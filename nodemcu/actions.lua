@@ -3,6 +3,7 @@ actions={}
 actions.katzup=     function()  pwm.setduty(servo1_pin,servo_idle) end
 actions.katzdown=   function()  pwm.setduty(servo1_pin,servo_min) end
 actions.katzshake=  function () 
+    paw_busy()
     for i=1,4 do
         paw(100)
         tmr.delay(70000)
@@ -13,6 +14,7 @@ actions.katzshake=  function ()
 end
 
 actions.katzmosh=   function () 
+    paw_busy()
     for i=1,6 do
         paw(100)
         tmr.delay(290000)
@@ -23,6 +25,7 @@ actions.katzmosh=   function ()
 end
 
 actions.katzwave=   function() 
+   paw_busy()
    local v
    for v = 0,100,2 do
       paw(v)
@@ -33,6 +36,7 @@ actions.katzwave=   function()
       tmr.delay(19000)
     end
     --i=0/0
+    paw_idle()
 end
 
 --actions.katzfn = function (data) 

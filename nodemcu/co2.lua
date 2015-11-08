@@ -1,5 +1,4 @@
 --timer used: 2
-
 -- Münster, November 2015, outdoor 12DegC:  293
 ZERO_POINT_VOLTAGE=293
 
@@ -8,12 +7,9 @@ function sendCO2Value(value)
     if m then 
       m:publish(MYTOPIC.."/co2adc",value, 0, 0)
     end
-    v2=100-(value-200)
-   -- print(v2)
-    paw(v2)
+    v2=100-(value-200)  
+    --paw(v2)
 end
-
-
 
 function pollCO2()
   local val=adc.read(0)
