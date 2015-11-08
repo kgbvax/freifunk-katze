@@ -7,8 +7,9 @@ MYTOPIC="/warpzone.ms/winkekatze" --base
 
 local STARTUP_DELAY=25000
 local SSID="foo"
+local WIFIPWD="finetobaccos"
 wifi.setmode(wifi.STATION)
-wifi.sta.config(SSID,"finetobaccos")
+wifi.sta.config(SSID,WIFIPWD)
 -- wifi.sta.autoconnect(0)
 wifi.sta.connect()
 print("Wifi initalized ",wifi.sta.getmac() .. " " .. SSID)
