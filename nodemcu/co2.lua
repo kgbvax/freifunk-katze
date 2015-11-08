@@ -9,7 +9,7 @@ function sendCO2Value(value)
       m:publish(MYTOPIC.."/co2adc",value, 0, 0)
     end
     v2=100-(value-200)
-    print(v2)
+   -- print(v2)
     paw(v2)
 end
 
@@ -17,7 +17,7 @@ end
 
 function pollCO2()
   local val=adc.read(0)
-  print("CO2 ADC read " .. val)
+  -- print("CO2 ADC read " .. val .." ".. node.heap())
   -- print(m)
   -- todo conversion to ppm
   sendCO2Value(val)

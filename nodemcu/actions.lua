@@ -1,7 +1,3 @@
-
-
-
-
 --actions
 actions={}
 actions.katzup=     function()  pwm.setduty(servo1_pin,servo_idle) end
