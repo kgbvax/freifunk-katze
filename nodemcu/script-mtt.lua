@@ -4,13 +4,6 @@ print("id:"..identity)
 
 -- BROKER="m2m.eclipse.org"
 BROKER="mqtt.kgbvax.net"
--- BROKER="broker.hivemq.com"
- 
-
-seek_delay=30000 --usec
-servo_max=35
-servo_min=120
-servo_idle=55
 
 
 MYTOPIC="/warpzone.ms/winkekatze" --base 
@@ -56,23 +49,24 @@ end
 waitForIp() -- wait for IP 
 waitForIp=nil -- and forget the function
 
--- initiate the mqtt client and set keepalive timer to 120sec
-m = mqtt.Client(myname, 60,"","")
 
 local eventConnected=function() 
   NET=true 
   pwm.setduty(led_pin,0) 
-  print ("now connected") 
+  print (">>connected") 
 end
-  
-m:on("connect", eventConnected)
 
-m:on("offline", function(con) 
+local eventDisconnected=function()
   NET=false 
   pwm.setduty(led_pin,700)
-  print ("now offline") 
+  print (">>offline") 
   tmr.alarm(3,1000,0,doConnect)
-end)
+end
+
+-- initiate the mqtt client and set keepalive timer to 60sec
+m = mqtt.Client(myname, 60,"","")
+m:on("connect", eventConnected)
+m:on("offline", eventDisconnected)
 
 local helpStr=function(act) 
   local help = "I can do: "
@@ -82,7 +76,7 @@ local helpStr=function(act)
     end
     return help
   end
-  return "No actions available."
+  return "No actn."
 end
 
 
@@ -144,10 +138,9 @@ local doConnect= function()
             say("Die Katze ist erwacht.")
             intro()
           end)
-        --m:subscribe(mytopic_eval,0)
+        m:subscribe(mytopic_eval,0,function() end)
       end) 
 end
      
-
 
 tmr.alarm(3,1000,0,doConnect)

@@ -1,7 +1,7 @@
 --actions
 actions={}
-actions.katzup=     function()  pwm.setduty(servo1_pin,servo_idle) end
-actions.katzdown=   function()  pwm.setduty(servo1_pin,servo_min) end
+actions.katzup=     function()  paw(100)  end
+actions.katzdown=   function()  paw(0) end
 actions.katzshake=  function () 
     paw_busy()
     for i=1,4 do
