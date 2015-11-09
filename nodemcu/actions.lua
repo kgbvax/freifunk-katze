@@ -4,12 +4,13 @@ actions.katzup=     function()  paw(100)  end
 actions.katzdown=   function()  paw(0) end
 actions.katzshake=  function () 
     paw_busy()
-    for i=1,4 do
+    for i=1,5 do
         paw(100)
         tmr.delay(70000)
         paw(0)
         tmr.delay(70000)
     end
+    
     paw_idle()
 end
 
@@ -17,10 +18,10 @@ actions.katzmosh=   function ()
     paw_busy()
     for i=1,6 do
         paw(100)
-        tmr.delay(290000)
+        tmr.delay(220000)
         paw(0)
-        tmr.delay(290000)
-    end
+        tmr.delay(220000)
+    end 
     paw_idle()
 end
 

@@ -12,16 +12,18 @@ do
     local function sendCO2Value(value)
         if NET then 
           m:publish(MYTOPIC.."/co2adc",value, 0, 0)
-        --  udpCon:send("test.warpkatze.co2adc " .. tostring(value) .. tostring(epochTime()))
+         -- local m="test.warpkatze.co2adc " .. tostring(value) .. " " ..tostring(epochTime())
+         -- udpCon:send(m)
+         -- print(m)
         end
         v2=value-200 
-        paw(v2)
+        paw_idle(v2)
     end
     
     local function pollCO2()
       local val=adc.read(0)
-      -- print("CO2 ADC read " .. val .." ".. node.heap())
-      -- print(m)
+      --print("CO2 ADC read " .. val .." ".. node.heap())
+
       -- todo conversion to ppm
       sendCO2Value(val)
     end
